@@ -1,3 +1,7 @@
+/* gui.go provides the GUI for the phageLog project using the WALK library
+ * Author: Elizabeth Koning
+ * Written in 2017
+ */
 package main
 
 import (

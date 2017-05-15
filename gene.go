@@ -1,3 +1,7 @@
+/* gene.go specifies the Gene struct for the phageLog project
+ * Author: Elizabeth Koning
+ * Written in 2017
+ */
 package main
 
 import (

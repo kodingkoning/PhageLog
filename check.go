@@ -1,3 +1,6 @@
+/* check.go provides checks for the phageLog project
+ * confirms logical inputs, making fact checking easier for the poeple
+ */
 package main
 
 // check basic properties of the start and stop values
