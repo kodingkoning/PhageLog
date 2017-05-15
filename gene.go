@@ -5,6 +5,10 @@ import (
 )
 
 type Gene struct {
+	// Strings: name, codingPot, blast, function, functionSource, notes
+	// int: num, start, stop, sdRank, altGeneMark, altGlimer, lastEnd, lengthRank, stStart
+	// bool: forward, geneMark, glimmer
+	// float: sdScore
 	name string
 	num int
 	start int
@@ -81,13 +85,29 @@ func (g *Gene) SD() string {
 	return "SD: " + strconv.FormatFloat(g.sdScore, 'g', -1, 64) + "; " + rank + "best score."
 }
 
-func (g *Gene) LO() string {
-	result := "LO: ";
+// calculate length of gene
+func (g * Gene) length() int {
 	if g.stop-g.start > 0 {
-		result += strconv.Itoa(g.stop-g.start+1) + " bp; "
+		return g.stop-g.start+1
 	} else {
-		result += strconv.Itoa(g.start-g.stop+1) + " bp; "
+		return g.start-g.stop+1
 	}
+}
+
+// generate the output describing the length and rank of the length
+func (g *Gene) LO() string {
+	//result := "LO: ";
+	//if g.stop-g.start > 0 {
+	//	result += strconv.Itoa(g.stop-g.start+1) + " bp; "
+	//} else {
+	//	result += strconv.Itoa(g.start-g.stop+1) + " bp; "
+	//}
+	//if (g.lengthRank != 1) {
+	//	result += findRank(g.lengthRank) + " "
+	//}
+	//result += "longest possible ORF."
+	//return result
+	result := "LO: " + strconv.Itoa( g.length() ) + " bp; "
 	if (g.lengthRank != 1) {
 		result += findRank(g.lengthRank) + " "
 	}
@@ -95,28 +115,11 @@ func (g *Gene) LO() string {
 	return result
 }
 
-/* -- moved to check.go
-// check basic properties of the start and stop values
-func (g *Gene) checkSSC() string {
-	if (g.forward && (g.stop-g.start+1)%3 != 0) || (!g.forward && (g.start-g.stop+1)%3 != 0) {
-		// TODO throw error("Length must be a multiple of 3.")
-		return "Error: Length must be a multiple of 3."
-	}
-	if g.forward && g.start > g.stop {
-		// TODO throw error("For a forward gene, start must be less than stop."
-		return "For a forward gene, start must be less than stop."
-	}
-	if !g.forward && g.stop > g.start {
-		// TODO throw error("For a reverse gene, stop must be less than start."
-		return "For a reverse gene, stop must be less than start."
-	}
-	return ""
-}
-*/
-
 // generate the output describing Starterator results
 func (g *Gene) ST() string {
-	if g.start == g.stStart {
+	if g.stStart == 0 {
+		return "ST: Starterator not available."
+	} else if g.start == g.stStart {
 		return "ST: Starterator agrees with start at bp " + strconv.Itoa(g.stStart)
 	} else {
 		return "ST: Starterator suggested start at bp " + strconv.Itoa(g.stStart)

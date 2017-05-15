@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	var inTE, outTE, inOther, inBlast, inFunction, inFS, inCP *walk.TextEdit
+	var inTE, outTE, inOther, inBlast, inFunction, inFS, inCP, errorOut *walk.TextEdit
 	var inGeneNum, inStart, inStop, inSD, inSDRank, inEndLast, inLengthRank, inST, inTotalGenes, inAltGeneMark, inAltGlimmer *walk.NumberEdit
 	var lastLabel *walk.Label
 	var inReverse, inGlimmer, inGeneMark *walk.CheckBox
@@ -19,8 +19,8 @@ func main() {
 
 	MainWindow{
 		Title: "Phage Recorder",
-		MinSize: Size{300, 700},
-		Layout: VBox{},
+		MinSize: Size{300, 500},
+		Layout: VBox{ },
 		Children: []Widget {
 			VSplitter{ Children: []Widget{
 				Composite{
@@ -81,8 +81,7 @@ func main() {
 					TextEdit{AssignTo: &outTE, ReadOnly: true},
 				},
 			},
-
-			// start button row
+			TextEdit {AssignTo: &errorOut, MaxSize: Size{250, 20}, },
 			PushButton{
 				Text: "Record",
 				OnClicked: func() {
@@ -114,8 +113,8 @@ func main() {
 					// check start and stop values
 					sscCheck := gene.checkSSC()
 					if sscCheck != "" {
-						outTE.SetText(sscCheck)
-					} else {
+						errorOut.SetText(sscCheck)
+					}
 
 						// get output
 						setGeneOutput( outTE, gene )
@@ -141,7 +140,6 @@ func main() {
 						}
 						c.Close()
 						*/
-					}
 				}, },
 				PushButton {Text: "Clear", OnClicked: func() {
 					// Not cleared: name, out of/, 
@@ -171,6 +169,8 @@ func main() {
 					inBlast.SetText("")
 					inFS.SetText("")
 					inReverse.SetCheckState(0)
+					outTE.SetText("")
+					errorOut.SetText("")
 				}, },
 			// end of button row
 		},
