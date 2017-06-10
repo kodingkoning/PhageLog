@@ -22,7 +22,7 @@ func main() {
 	lastLabelText := "End of 0"
 
 	MainWindow{
-		Title: "Phage Recorder",
+		Title: "Phage Log",
 		MinSize: Size{300, 500},
 		Layout: VBox{ },
 		Children: []Widget {
