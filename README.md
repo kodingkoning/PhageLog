@@ -1,4 +1,4 @@
-# phagegenerecord
+# PhageLog
 PhageLog assists in annotating the genomes of bacteriophages, specifically those found through the SEA-PHAGES program. It is written in Go, using the Walk library for the GUI and works in the Windows OS.
 
 First used at Calvin College in 2017, we encourage other schools to use it as they find useful. We would be glad to hear your thoughts about what you appreciate about the program and what additional features would be useful.
