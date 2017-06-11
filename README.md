@@ -16,3 +16,5 @@ Once opened, it is designed to fit to one side of DNA Master, so they can be vie
 - "Clear" empties most fields, leaving the phage name and incrementing the gene number. End of the last is updated to the Stop field.
 
 We plan to develop a tool that reformats the annotations to be pastable in DNA Master's "Documentation" tab. This should be released in time for 2018 genome annotations.
+
+Contact Elizabeth Koning at erk24@students.calvin.edu with questions or suggestions.
