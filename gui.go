@@ -71,7 +71,7 @@ func main() {
 						TabPage{Title: "CP", Content: TextEdit{AssignTo: &inCP}, },
 						TabPage{Title: "SCS", Content: Composite { Layout: HBox{}, Children: []Widget {
 							HSplitter { Children: []Widget {VSplitter { Children: []Widget {
-								CheckBox{Text: "Glimmer", AssignTo: &inGlimmer}, 
+								CheckBox{Text: "Glimmer", AssignTo: &inGlimmer},
 								CheckBox{Text: "GeneMark", AssignTo: &inGeneMark},
 							}, }, VSplitter { Children: []Widget {
 							Label{ Text: "Other GeneMark" },
@@ -146,7 +146,7 @@ func main() {
 						*/
 				}, },
 				PushButton {Text: "Clear", OnClicked: func() {
-					// Not cleared: name, out of/, 
+					// Not cleared: name, out of/,
 
 					// numbers
 					if gene.stop > gene.start {
@@ -182,6 +182,7 @@ func main() {
 }
 
 func setGeneOutput(outTE *walk.TextEdit, g Gene) {
+	//Set each individually to get new lines between each.
 	outTE.SetText( g.title() + "\n" )
 	outTE.AppendText( g.SSC() + "\n" )
 	outTE.AppendText( g.CP() + "\n" )
